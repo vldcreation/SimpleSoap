@@ -93,7 +93,7 @@ public class ProdukFacadeREST extends AbstractFacade<Produk> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public String Author() {
         return "Vicktor Lambok Desrony";
-    }
+}
     
     @GET
     @Path("/Footer")

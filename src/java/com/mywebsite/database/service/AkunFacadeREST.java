@@ -5,12 +5,12 @@
  */
 package com.mywebsite.database.service;
 
-import javax.persistence.Query;
 import com.mywebsite.database.Akun;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -62,13 +62,6 @@ public class AkunFacadeREST extends AbstractFacade<Akun> {
     public Akun find(@PathParam("id") Integer id) {
         return super.find(id);
     }
-    
-//    @GET
-//    @Path("{username}")
-//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public Akun findByUsername(@PathParam("username") String username) {
-//        return super.findByUsername(username);
-//    }
 
     @GET
     @Override
@@ -96,6 +89,7 @@ public class AkunFacadeREST extends AbstractFacade<Akun> {
         return em;
     }
     
+    
     @GET
     @Path("username/{username}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -104,13 +98,5 @@ public class AkunFacadeREST extends AbstractFacade<Akun> {
         query.setParameter("username", username);
         Akun akun = (Akun) query.getSingleResult();
         return super.find(akun.getIdUser());
-    }
-    
-//    @GET
-//    @Path("{txt}")
-//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public String testaja(String test) {
-//        return "Test Aja : "+test;
-//    }
-    
+}
 }

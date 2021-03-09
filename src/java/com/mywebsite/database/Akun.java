@@ -40,12 +40,6 @@ import javax.xml.registry.infomodel.User;
     , @NamedQuery(name = "Akun.findByPassword", query = "SELECT a FROM Akun a WHERE a.password = :password")})
 public class Akun implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_user")
-    private Integer idUser;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 256)
@@ -61,6 +55,13 @@ public class Akun implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "password")
     private String password;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_user")
+    private Integer idUser;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
     private Collection<Keranjang> keranjangCollection;
 
@@ -86,29 +87,6 @@ public class Akun implements Serializable {
         this.idUser = idUser;
     }
 
-    public String getNamalengkap() {
-        return namalengkap;
-    }
-
-    public void setNamalengkap(String namalengkap) {
-        this.namalengkap = namalengkap;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @XmlTransient
     public Collection<Keranjang> getKeranjangCollection() {
@@ -142,6 +120,30 @@ public class Akun implements Serializable {
     @Override
     public String toString() {
         return "com.mywebsite.database.Akun[ idUser=" + idUser + " ]";
+    }
+
+    public String getNamalengkap() {
+        return namalengkap;
+    }
+
+    public void setNamalengkap(String namalengkap) {
+        this.namalengkap = namalengkap;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
 }

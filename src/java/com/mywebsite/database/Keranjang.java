@@ -21,6 +21,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -33,8 +34,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Keranjang.findAll", query = "SELECT k FROM Keranjang k")
     , @NamedQuery(name = "Keranjang.findByIdKeranjang", query = "SELECT k FROM Keranjang k WHERE k.idKeranjang = :idKeranjang")
+    , @NamedQuery(name = "Keranjang.findByIdUser", query = "SELECT k FROM Keranjang k WHERE k.idUser = :idUser")   
     , @NamedQuery(name = "Keranjang.findByTanggal", query = "SELECT k FROM Keranjang k WHERE k.tanggal = :tanggal")})
 public class Keranjang implements Serializable {
+
+    @Column(name = "jumlah")
+    private Integer jumlah;
+    @Size(max = 20)
+    @Column(name = "tanggal")
+    private String tanggal;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,11 +50,6 @@ public class Keranjang implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_keranjang")
     private Integer idKeranjang;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "tanggal")
-    @Temporal(TemporalType.DATE)
-    private Date tanggal;
     @JoinColumn(name = "id_produk", referencedColumnName = "id_produk")
     @ManyToOne(optional = false)
     private Produk idProduk;
@@ -61,7 +64,7 @@ public class Keranjang implements Serializable {
         this.idKeranjang = idKeranjang;
     }
 
-    public Keranjang(Integer idKeranjang, Date tanggal) {
+    public Keranjang(Integer idKeranjang, String tanggal) {
         this.idKeranjang = idKeranjang;
         this.tanggal = tanggal;
     }
@@ -74,13 +77,6 @@ public class Keranjang implements Serializable {
         this.idKeranjang = idKeranjang;
     }
 
-    public Date getTanggal() {
-        return tanggal;
-    }
-
-    public void setTanggal(Date tanggal) {
-        this.tanggal = tanggal;
-    }
 
     public Produk getIdProduk() {
         return idProduk;
@@ -121,6 +117,22 @@ public class Keranjang implements Serializable {
     @Override
     public String toString() {
         return "com.mywebsite.database.Keranjang[ idKeranjang=" + idKeranjang + " ]";
+    }
+
+    public Integer getJumlah() {
+        return jumlah;
+    }
+
+    public void setJumlah(Integer jumlah) {
+        this.jumlah = jumlah;
+    }
+
+    public String getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
     }
     
 }

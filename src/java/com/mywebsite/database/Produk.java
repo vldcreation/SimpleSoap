@@ -42,14 +42,14 @@ public class Produk implements Serializable {
     @Size(max = 256)
     @Column(name = "nama_produk")
     private String namaProduk;
-    @Column(name = "harga")
-    private Integer harga;
-    @Column(name = "jumlah_Produk")
-    private Integer jumlahProduk;
     @Lob
     @Size(max = 65535)
     @Column(name = "deskripsi")
     private String deskripsi;
+    @Column(name = "harga")
+    private Integer harga;
+    @Column(name = "jumlah_Produk")
+    private Integer jumlahProduk;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProduk")
     private Collection<Keranjang> keranjangCollection;
 
@@ -133,13 +133,6 @@ public class Produk implements Serializable {
     }
 
 
-    public String getDeskripsi() {
-        return deskripsi;
-    }
-
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
-    }
 
     @XmlTransient
     public Collection<Keranjang> getKeranjangCollection() {
@@ -148,6 +141,15 @@ public class Produk implements Serializable {
 
     public void setKeranjangCollection(Collection<Keranjang> keranjangCollection) {
         this.keranjangCollection = keranjangCollection;
+    }
+
+
+    public String getDeskripsi() {
+        return deskripsi;
+    }
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
     }
     
 }
